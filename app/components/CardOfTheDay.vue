@@ -30,53 +30,19 @@
 </template>
 
 <script>
-import { Cards } from "../data/cards";
+import Tarot from "../mixins/tarot";
 
 export default {
   name: "CardOfTheDay",
+  mixins: [Tarot],
   data() {
-    return {
-      name: "",
-      meaning: "",
-      emoji: "",
-      emoji1: "",
-      emoji2: "",
-      icon: "emoji",
-      cards: Cards,
-      major: true,
-      reversed: false,
-    };
-  },
-  computed: {
-    shuffle() {
-      return Math.floor(Math.random() * 2);
-    },
-    randomNumber() {
-      return Math.round(Math.random() * 72);
-    },
+    return {};
   },
   methods: {
-    getMyCard() {
-      const card = this.cards[this.randomNumber];
-      this.name = card.name;
-
-      if (card.type != "major") {
-        this.major = false;
-        this.emoji1 = "~/assets/emoji/" + card.value + ".png";
-        this.emoji2 = "~/assets/emoji/" + card.suit + ".png";
-      } else {
-        this.major = true;
-        this.emoji = "~/assets/emoji/" + card.value + ".png";
-      }
-
-      if (this.shuffle == 0) {
-        this.meaning = card.meaning_up;
-        this.icon = "emoji";
-      } else {
-        this.meaning = card.meaning_rev;
-        this.reversed = true;
-        this.icon = "emoji reversed";
-      }
+    getMyCard(context) {
+      let sNum = Math.floor(Math.random() * 2);
+      let rNum = Math.round(Math.random() * 72);
+      this.getOneCard(context, sNum, rNum);
     },
   },
   created() {
