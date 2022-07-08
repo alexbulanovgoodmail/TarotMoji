@@ -19,7 +19,7 @@
         colSpan="3"
       />
       <Button
-        text.decode="&#xf0c8;"
+        text.decode="&#xf015;"
         :class="navigationButtonClasses('CardOfTheDay')"
         @tap="currentComponent = 'CardOfTheDay'"
         row="2"
